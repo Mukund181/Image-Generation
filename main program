@@ -1,0 +1,41 @@
+from diffusers import StableDiffusionPipeline
+import torch
+from PIL import Image
+import matplotlib.pyplot as plt
+from huggingface_hub import login
+
+login("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")
+
+pipe = StableDiffusionPipeline.from_pretrained(
+    "CompVis/stable-diffusion-v1-4",
+    torch_dtype=torch.float16,
+).to("cuda")
+prompt = "a futuristic city skyline at sunset with flying cars"
+image = pipe(prompt).images[0]
+
+plt.imshow(image)
+plt.axis("off")
+plt.title("Generated Image")
+plt.show()
+# Take prompt input from user
+prompt = input("Enter a prompt to generate an image: ")
+
+# Generate image from the prompt
+image = pipe(prompt).images[0]
+
+# Show the image
+plt.imshow(image)
+plt.axis("off")
+plt.title(f"Prompt: {prompt}")
+plt.show()
+# Take prompt input from user
+prompt = input("Enter a prompt to generate an image: ")
+
+# Generate image from the prompt
+image = pipe(prompt).images[0]
+
+# Show the image
+plt.imshow(image)
+plt.axis("off")
+plt.title(f"Prompt: {prompt}")
+plt.show()
